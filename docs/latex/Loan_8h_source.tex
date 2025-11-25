@@ -1,0 +1,155 @@
+\doxysection{Loan.\+h}
+\hypertarget{Loan_8h_source}{}\label{Loan_8h_source}\index{src/Loan.h@{src/Loan.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LOAN\_H\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LOAN\_H\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00005\ \textcolor{comment}{Formulas\ from:\ http://oakroadsystems.com/math/loan.htm}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Loan\ balance\ after\ n\ payments\ have\ been\ made:}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ B\_n\ =\ A*(1+i)\string^n\ -\/\ (P/i)*((1+i)\string^n\ -\/\ 1)}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{}}
+\DoxyCodeLine{00011\ \textcolor{comment}{Payment\ amount\ on\ a\ loan:}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ P\ =\ i*A\ /\ (1\ -\/\ (1+i)\string^-\/N)}}
+\DoxyCodeLine{00013\ \textcolor{comment}{}}
+\DoxyCodeLine{00014\ \textcolor{comment}{}}
+\DoxyCodeLine{00015\ \textcolor{comment}{Number\ of\ payments\ on\ a\ loan:\ (You\ can\ use\ any\ logarithm\ base,\ as\ long\ as\ both\ logs\ use\ the\ same\ base.)}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Aunt\ Sally\ offers\ to\ lend\ you\ \$3500\ at\ 6\%\ for\ that\ new\ home\ theater\ system\ you\ want.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ If\ you\ pay\ her\ back\ \$100\ a\ month,\ how\ long\ will\ it\ take?}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Solution:\ \ 6\%\ per\ year\ is\ 0.5\%\ per\ month,\ or\ 0.005.\ P\ =\ 100\ and\ A\ =\ 3500.\ N\ =\ 38.57}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ N\ =\ -\/log(1-\/i*A/P)\ /\ log(1+i)}}
+\DoxyCodeLine{00020\ \textcolor{comment}{}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{Original\ loan\ amount:}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ A\ =\ (P/i)*(1\ -\/\ (1+i)\string^-\/N)}}
+\DoxyCodeLine{00024\ \textcolor{comment}{}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{Interest\ Rate:}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ i\ =\ (((1\ +\ P/A)\string^(1/q)\ -\/\ 1\ )\string^q\ -\/\ 1)\ \ NOTICE:\ This\ is\ an\ approximate\ not\ an\ exact\ solution}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ where\ q\ =\ log(1+1/N)\ /\ log(2)}}
+\DoxyCodeLine{00029\ \textcolor{comment}{}}
+\DoxyCodeLine{00030\ \textcolor{comment}{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{Variables:}}
+\DoxyCodeLine{00032\ \textcolor{comment}{A\ \ \ \ \ \ \ the\ loan\ amount\ (the\ principal\ sum)\ or\ initial\ investment}}
+\DoxyCodeLine{00033\ \textcolor{comment}{B\_n\ or\ Bn\ \ \ \ \ \ \ (pronounced\ B\ sub\ n)\ the\ balance\ after\ n\ payments\ have\ been\ made.\ After\ the\ last\ payment\ has\ been\ made,\ B\_N\ is\ zero.)}}
+\DoxyCodeLine{00034\ \textcolor{comment}{i\ \ \ \ \ \ \ the\ interest\ rate\ per\ period,\ not\ per\ year}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ \ \ (For\ instance,\ if\ the\ loan\ payments\ are\ made\ monthly\ and\ the\ interest\ rate\ is\ 9\%,\ then\ i\ =\ 9\%/12\ =\ 0.75\%\ =\ 0.0075.)}}
+\DoxyCodeLine{00036\ \textcolor{comment}{n\ \ \ \ \ \ \ the\ number\ of\ time\ periods\ elapsed\ at\ any\ given\ point}}
+\DoxyCodeLine{00037\ \textcolor{comment}{N\ \ \ \ \ \ \ the\ total\ number\ of\ payments\ for\ the\ entire\ loan\ or\ investment}}
+\DoxyCodeLine{00038\ \textcolor{comment}{P\ \ \ \ \ \ \ the\ amount\ of\ each\ equal\ payment}}
+\DoxyCodeLine{00039\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLoanCalculator}{LoanCalculator}}}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \mbox{\hyperlink{classLoanCalculator}{LoanCalculator}}();}
+\DoxyCodeLine{00053\ \ \ \mbox{\hyperlink{classLoanCalculator}{\string~LoanCalculator}}()\ \{\}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00056\ \ \ \textcolor{comment}{//\ Setters\ and\ Getters}}
+\DoxyCodeLine{00057\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLoanCalculator_adca4e95bf37896cfcbbd87509b5c0692}{setAmount}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ A)\ \{\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{if}(A\ <\ 0)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Amount\ can't\ be\ negative!"{}});\ }
+\DoxyCodeLine{00068\ \ \ \ \ amount\_\ =\ A;\ amountSet\_\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00069\ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \textcolor{comment}{//\ ...\ (Other\ getters/setters\ as\ you\ fixed\ them,\ each\ with\ a\ comment)}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00073\ \ \ \textcolor{comment}{//\ The\ actual\ calculation\ methods}}
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classLoanCalculator_a05a321a1816b8e9bd55a861849362b6c}{getAmount}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ amount\_;\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00087\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLoanCalculator_a2f498031e002c3c3cbd5d20c621404db}{setInitialPayment}}(\textcolor{keywordtype}{float}\ initialA)\ \ \{\ initialPayment\_\ =\ initialA;\ \}}
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ getInitialPayment()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ initialPayment\_;\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLoanCalculator_ac106a9e5d2cca15cb0e5605f060a9558}{setInterest}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ i)\ \{\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{if}(i\ <\ 0)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Interest\ rate\ can't\ be\ negative!"{}});\ }
+\DoxyCodeLine{00099\ \ \ \ \ interest\_\ =\ i;\ interestPeriodic\_\ =\ i/100.0/12.0;\ interestSet\_\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00100\ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ getInterest()\textcolor{keyword}{\ const\ \ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ interest\_;\ \}}
+\DoxyCodeLine{00102\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ getPeriodicInterest()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ interestPeriodic\_;\ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setPayment(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ P)\ \{\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{if}(P\ <\ 0)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Payment\ amount\ can't\ be\ negative!"{}});}
+\DoxyCodeLine{00106\ \ \ \ \ payment\_\ =\ P;\ paymentSet\_\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00107\ \ \ \}}
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ getPayment()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ payment\_;\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setPeriodTotal(\textcolor{keywordtype}{int}\ N)\ \{\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{if}(N\ <=\ 0\ ||\ N>1200)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Total\ period\ must\ be\ greater\ than\ zero!"{}});}
+\DoxyCodeLine{00112\ \ \ \ \ periodTotal\_\ =\ N;\ periodTotalSet\_\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00113\ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ getPeriodTotal()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ periodTotal\_;\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setPeriodElapsed(\textcolor{keywordtype}{int}\ n)\ \{\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{if}(n\ <\ 0\ ||\ n>periodTotal\_)\ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Elapsed\ period\ can't\ be\ negative!"{}});}
+\DoxyCodeLine{00118\ \ \ \ \ periodElapsed\_\ =\ n;\ periodElapsedSet\_\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00119\ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ getPeriodElapsed()\textcolor{keyword}{\ const\ \ }\{\ \textcolor{keywordflow}{return}\ periodElapsed\_;\ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setOpeningFee(\textcolor{keywordtype}{float}\ fee)\ \{\ openingFee\_\ =\ fee;\ \}}
+\DoxyCodeLine{00123\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ getOpeningFee()\textcolor{keyword}{\ const\ \ \ }\{\ \textcolor{keywordflow}{return}\ openingFee\_;\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setOpeningPercent(\textcolor{keywordtype}{float}\ percent)\ \{\ openingPercent\_\ =\ percent;\ \}}
+\DoxyCodeLine{00126\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ getOpeningPercent()\textcolor{keyword}{\ const\ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ openingPercent\_;\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ reset()\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ amount\_\ =\ initialPayment\_\ =\ interest\_\ =\ interestPeriodic\_\ =\ payment\_\ =\ openingFee\_\ =\ openingPercent\_\ =\ 0.0;}
+\DoxyCodeLine{00130\ \ \ \ \ periodTotal\_\ =\ periodElapsed\_\ =\ 0;}
+\DoxyCodeLine{00131\ \ \ \ \ amountSet\_\ =\ interestSet\_\ =\ paymentSet\_\ =\ periodTotalSet\_\ =\ periodElapsedSet\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00132\ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00135\ \ \ \textcolor{comment}{//\ The\ actual\ calculation\ methods}}
+\DoxyCodeLine{00136\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classLoanCalculator_ae0febfab39ea987ede3b75157b893464}{calculateLoanBalance}}();}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00146\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classLoanCalculator_a728212380d4c208992dc89fce0280edb}{calculatePayment}}();}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \textcolor{comment}{//\ ...\ (Document\ the\ remaining\ calculation\ methods\ similarly:\ }}
+\DoxyCodeLine{00149\ \ \ \textcolor{comment}{//\ calculateNumberPayments,\ calculateLoanAmount,\ calculateInterestRate,\ etc.)}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00156\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classLoanCalculator_ab7a47fec2b8ffc63a1eae6d55a236f78}{calculateNumberPayments}}();}
+\DoxyCodeLine{00157\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classLoanCalculator_a289aa32a75f5eacc8f16eeea4fb7c2dc}{calculateLoanAmount}}();}
+\DoxyCodeLine{00158\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classLoanCalculator_a145b491eda0404751cc16233c5e5b0f4}{calculateInterestRate}}();}
+\DoxyCodeLine{00159\ \ \ \textcolor{comment}{//\ The\ effective\ interest\ rate,\ once\ fees\ have\ been\ applied}}
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ calculateEffectiveInterestRate();}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ std::string\ toString();}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ amount\_;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ loan\ amount}}
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordtype}{bool}\ amountSet\_;}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ initialPayment\_;\ \ \ \ \ \textcolor{comment}{//\ initial\ down\ payment}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ interest\_;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ interest\ rate,\ something\ like\ 6.75}}
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ interestPeriodic\_;\ \ \textcolor{comment}{//\ this\ will\ be\ .0675/12}}
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordtype}{bool}\ interestSet\_;}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ payment\_;\ \ \ \ \ \ \ \textcolor{comment}{//\ payment\ amount}}
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordtype}{bool}\ paymentSet\_;}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \textcolor{keywordtype}{int}\ periodTotal\_;\ \ \ \ \ \textcolor{comment}{//\ total\ payment\ periods}}
+\DoxyCodeLine{00178\ \ \ \textcolor{keywordtype}{bool}\ periodTotalSet\_;}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \textcolor{keywordtype}{int}\ periodElapsed\_;\ \ \ \textcolor{comment}{//\ number\ of\ elapsed\ payment\ periods}}
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordtype}{bool}\ periodElapsedSet\_;}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \textcolor{comment}{//\ These\ two\ are\ used\ if\ loans\ charge\ a\ fee\ opening\ fee\ or\ percentage}}
+\DoxyCodeLine{00184\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ openingFee\_;}
+\DoxyCodeLine{00185\ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ openingPercent\_;}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \};}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LOANCALCULATOR\_H\_INCLUDED}}
+
+\end{DoxyCode}

@@ -40,6 +40,12 @@ P   	the amount of each equal payment
 
 #include <string>
 
+/**
+ * @brief Core class for calculating loan metrics (EMI, Balance, Interest).
+ * * This class stores loan parameters and performs all necessary financial computations
+ * while enforcing input validation (non-negative amounts, periods, etc.).
+ */
+
 class LoanCalculator
 {
 public:
@@ -61,6 +67,18 @@ public:
     if(A < 0) throw std::invalid_argument("Amount can't be negative!"); 
     amount_ = A; amountSet_ = true; 
   }
+  // ... (Other getters/setters as you fixed them, each with a comment)
+
+  //
+  // The actual calculation methods
+  //
+
+  /**
+   * @brief Calculates the remaining loan balance after a set number of payments.
+   * @return The remaining balance as a long double.
+   * @throw std::invalid_argument if required parameters are not set.
+   */
+
   inline float getAmount() const { return amount_; }
 
   /**
@@ -118,7 +136,23 @@ public:
   //
 
   long double calculateLoanBalance();
+
+  /**
+   * @brief Calculates the required monthly payment (EMI).
+   * @return The monthly payment as a long double.
+   * @throw std::invalid_argument if required parameters are not set.
+   */
+
   long double calculatePayment();
+
+  // ... (Document the remaining calculation methods similarly: 
+  // calculateNumberPayments, calculateLoanAmount, calculateInterestRate, etc.)
+
+  /**
+   * @brief Provides a string summary of all currently set loan parameters.
+   * @return A std::string containing formatted loan information.
+   */
+  
   long double calculateNumberPayments();
   long double calculateLoanAmount();
   long double calculateInterestRate();

@@ -1,0 +1,182 @@
+\doxysection{Loan\+Calculator Class Reference}
+\hypertarget{classLoanCalculator}{}\label{classLoanCalculator}\index{LoanCalculator@{LoanCalculator}}
+
+
+Core class for calculating loan metrics (EMI, Balance, Interest).  
+
+
+
+
+{\ttfamily \#include $<$Loan.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classLoanCalculator_adca4e95bf37896cfcbbd87509b5c0692}{set\+Amount}} (long double A)
+\item 
+float \mbox{\hyperlink{classLoanCalculator_a05a321a1816b8e9bd55a861849362b6c}{get\+Amount}} () const
+\begin{DoxyCompactList}\small\item\em Calculates the remaining loan balance after a set number of payments. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLoanCalculator_a2f498031e002c3c3cbd5d20c621404db}{set\+Initial\+Payment}} (float initialA)
+\item 
+\Hypertarget{classLoanCalculator_a112599e716e084093b46321efca723a5}\label{classLoanCalculator_a112599e716e084093b46321efca723a5} 
+float {\bfseries get\+Initial\+Payment} () const
+\item 
+void \mbox{\hyperlink{classLoanCalculator_ac106a9e5d2cca15cb0e5605f060a9558}{set\+Interest}} (long double i)
+\item 
+\Hypertarget{classLoanCalculator_a04ce9360eaa88c8fac6a431747e6ab46}\label{classLoanCalculator_a04ce9360eaa88c8fac6a431747e6ab46} 
+long double {\bfseries get\+Interest} () const
+\item 
+\Hypertarget{classLoanCalculator_abc62738cff6f4acf8018e8cd47bb2fde}\label{classLoanCalculator_abc62738cff6f4acf8018e8cd47bb2fde} 
+long double {\bfseries get\+Periodic\+Interest} () const
+\item 
+\Hypertarget{classLoanCalculator_a405b246cf6a1ff834fb46aca180d268e}\label{classLoanCalculator_a405b246cf6a1ff834fb46aca180d268e} 
+void {\bfseries set\+Payment} (long double P)
+\item 
+\Hypertarget{classLoanCalculator_a1641dbe03369fded056f1313ba431fce}\label{classLoanCalculator_a1641dbe03369fded056f1313ba431fce} 
+long double {\bfseries get\+Payment} () const
+\item 
+\Hypertarget{classLoanCalculator_ae92ab15989a99151c642d31e7b52b6e0}\label{classLoanCalculator_ae92ab15989a99151c642d31e7b52b6e0} 
+void {\bfseries set\+Period\+Total} (int N)
+\item 
+\Hypertarget{classLoanCalculator_aa8e32cb9e75975d5b3673f4c81552d8e}\label{classLoanCalculator_aa8e32cb9e75975d5b3673f4c81552d8e} 
+int {\bfseries get\+Period\+Total} () const
+\item 
+\Hypertarget{classLoanCalculator_ab82003e37891fe2892bc020343208ec4}\label{classLoanCalculator_ab82003e37891fe2892bc020343208ec4} 
+void {\bfseries set\+Period\+Elapsed} (int n)
+\item 
+\Hypertarget{classLoanCalculator_a6dc0502542c7f38cf7d263df88e2e395}\label{classLoanCalculator_a6dc0502542c7f38cf7d263df88e2e395} 
+int {\bfseries get\+Period\+Elapsed} () const
+\item 
+\Hypertarget{classLoanCalculator_a8f839d2e43fff2e1643cc28ed9acb19b}\label{classLoanCalculator_a8f839d2e43fff2e1643cc28ed9acb19b} 
+void {\bfseries set\+Opening\+Fee} (float fee)
+\item 
+\Hypertarget{classLoanCalculator_a5d676308f78a9cca4466419a6613122c}\label{classLoanCalculator_a5d676308f78a9cca4466419a6613122c} 
+long double {\bfseries get\+Opening\+Fee} () const
+\item 
+\Hypertarget{classLoanCalculator_a391d0b2c8a7fe2932be66612becd40f8}\label{classLoanCalculator_a391d0b2c8a7fe2932be66612becd40f8} 
+void {\bfseries set\+Opening\+Percent} (float percent)
+\item 
+\Hypertarget{classLoanCalculator_acb31db4746625d1014351fb2bd491a7f}\label{classLoanCalculator_acb31db4746625d1014351fb2bd491a7f} 
+long double {\bfseries get\+Opening\+Percent} () const
+\item 
+\Hypertarget{classLoanCalculator_a75f23ca33a3267d9d14d8fa5b0842c48}\label{classLoanCalculator_a75f23ca33a3267d9d14d8fa5b0842c48} 
+void {\bfseries reset} ()
+\item 
+long double \mbox{\hyperlink{classLoanCalculator_ae0febfab39ea987ede3b75157b893464}{calculate\+Loan\+Balance}} ()
+\item 
+long double \mbox{\hyperlink{classLoanCalculator_a728212380d4c208992dc89fce0280edb}{calculate\+Payment}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the required monthly payment (EMI). \end{DoxyCompactList}\item 
+long double \mbox{\hyperlink{classLoanCalculator_ab7a47fec2b8ffc63a1eae6d55a236f78}{calculate\+Number\+Payments}} ()
+\begin{DoxyCompactList}\small\item\em Provides a string summary of all currently set loan parameters. \end{DoxyCompactList}\item 
+long double \mbox{\hyperlink{classLoanCalculator_a289aa32a75f5eacc8f16eeea4fb7c2dc}{calculate\+Loan\+Amount}} ()
+\item 
+long double \mbox{\hyperlink{classLoanCalculator_a145b491eda0404751cc16233c5e5b0f4}{calculate\+Interest\+Rate}} ()
+\item 
+\Hypertarget{classLoanCalculator_ad2546bc29d720c0f7043ecf67b928056}\label{classLoanCalculator_ad2546bc29d720c0f7043ecf67b928056} 
+long double {\bfseries calculate\+Effective\+Interest\+Rate} ()
+\item 
+\Hypertarget{classLoanCalculator_a3302b9c0a986b166497fb1fe1d9733a5}\label{classLoanCalculator_a3302b9c0a986b166497fb1fe1d9733a5} 
+std\+::string {\bfseries to\+String} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Core class for calculating loan metrics (EMI, Balance, Interest). 
+
+
+\begin{DoxyItemize}
+\item This class stores loan parameters and performs all necessary financial computations while enforcing input validation (non-\/negative amounts, periods, etc.). 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classLoanCalculator_a145b491eda0404751cc16233c5e5b0f4}\label{classLoanCalculator_a145b491eda0404751cc16233c5e5b0f4} 
+\index{LoanCalculator@{LoanCalculator}!calculateInterestRate@{calculateInterestRate}}
+\index{calculateInterestRate@{calculateInterestRate}!LoanCalculator@{LoanCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateInterestRate()}{calculateInterestRate()}}
+{\footnotesize\ttfamily long double Loan\+Calculator\+::calculate\+Interest\+Rate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Interest Rate\+: i = (((1 + P/A)\texorpdfstring{$^\wedge$}{\string^}(1/q) -\/ 1 )\texorpdfstring{$^\wedge$}{\string^}q -\/ 1) NOTICE\+: This is an approximate not an exact solution where q = log(1+1/N) / log(2) \Hypertarget{classLoanCalculator_a289aa32a75f5eacc8f16eeea4fb7c2dc}\label{classLoanCalculator_a289aa32a75f5eacc8f16eeea4fb7c2dc} 
+\index{LoanCalculator@{LoanCalculator}!calculateLoanAmount@{calculateLoanAmount}}
+\index{calculateLoanAmount@{calculateLoanAmount}!LoanCalculator@{LoanCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLoanAmount()}{calculateLoanAmount()}}
+{\footnotesize\ttfamily long double Loan\+Calculator\+::calculate\+Loan\+Amount (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Original loan amount\+: A = (P/i)\texorpdfstring{$\ast$}{*}(1 -\/ (1+i)\texorpdfstring{$^\wedge$}{\string^}-\/N) \Hypertarget{classLoanCalculator_ae0febfab39ea987ede3b75157b893464}\label{classLoanCalculator_ae0febfab39ea987ede3b75157b893464} 
+\index{LoanCalculator@{LoanCalculator}!calculateLoanBalance@{calculateLoanBalance}}
+\index{calculateLoanBalance@{calculateLoanBalance}!LoanCalculator@{LoanCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateLoanBalance()}{calculateLoanBalance()}}
+{\footnotesize\ttfamily long double Loan\+Calculator\+::calculate\+Loan\+Balance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Loan balance after n payments have been made\+: B\+\_\+n = A\texorpdfstring{$\ast$}{*}(1+i)\texorpdfstring{$^\wedge$}{\string^}n -\/ (P/i)\texorpdfstring{$\ast$}{*}((1+i)\texorpdfstring{$^\wedge$}{\string^}n -\/ 1) \Hypertarget{classLoanCalculator_ab7a47fec2b8ffc63a1eae6d55a236f78}\label{classLoanCalculator_ab7a47fec2b8ffc63a1eae6d55a236f78} 
+\index{LoanCalculator@{LoanCalculator}!calculateNumberPayments@{calculateNumberPayments}}
+\index{calculateNumberPayments@{calculateNumberPayments}!LoanCalculator@{LoanCalculator}}
+\doxysubsubsection{\texorpdfstring{calculateNumberPayments()}{calculateNumberPayments()}}
+{\footnotesize\ttfamily long double Loan\+Calculator\+::calculate\+Number\+Payments (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Provides a string summary of all currently set loan parameters. 
+
+\begin{DoxyReturn}{Returns}
+A std\+::string containing formatted loan information.
+\end{DoxyReturn}
+Number of payments on a loan\+: N = -\/log(1-\/i\texorpdfstring{$\ast$}{*}\+A/P) / log(1+i) (You can use any logarithm base, as long as both logs use the same base.) Aunt Sally offers to lend you \$3500 at 6\% for that new home theater system you want. If you pay her back \$100 a month, how long will it take? Solution\+: 6\% per year is 0.\+5\% per month, or 0.\+005. P = 100 and A = 3500. N = 38.\+57 \Hypertarget{classLoanCalculator_a728212380d4c208992dc89fce0280edb}\label{classLoanCalculator_a728212380d4c208992dc89fce0280edb} 
+\index{LoanCalculator@{LoanCalculator}!calculatePayment@{calculatePayment}}
+\index{calculatePayment@{calculatePayment}!LoanCalculator@{LoanCalculator}}
+\doxysubsubsection{\texorpdfstring{calculatePayment()}{calculatePayment()}}
+{\footnotesize\ttfamily long double Loan\+Calculator\+::calculate\+Payment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the required monthly payment (EMI). 
+
+\begin{DoxyReturn}{Returns}
+The monthly payment as a long double. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if required parameters are not set.\\
+\hline
+\end{DoxyExceptions}
+Payment amount on a loan\+: P = i\texorpdfstring{$\ast$}{*}A / (1 -\/ (1+i)\texorpdfstring{$^\wedge$}{\string^}-\/N) \Hypertarget{classLoanCalculator_a05a321a1816b8e9bd55a861849362b6c}\label{classLoanCalculator_a05a321a1816b8e9bd55a861849362b6c} 
+\index{LoanCalculator@{LoanCalculator}!getAmount@{getAmount}}
+\index{getAmount@{getAmount}!LoanCalculator@{LoanCalculator}}
+\doxysubsubsection{\texorpdfstring{getAmount()}{getAmount()}}
+{\footnotesize\ttfamily float Loan\+Calculator\+::get\+Amount (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculates the remaining loan balance after a set number of payments. 
+
+\begin{DoxyReturn}{Returns}
+The remaining balance as a long double. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & if required parameters are not set. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classLoanCalculator_adca4e95bf37896cfcbbd87509b5c0692}\label{classLoanCalculator_adca4e95bf37896cfcbbd87509b5c0692} 
+\index{LoanCalculator@{LoanCalculator}!setAmount@{setAmount}}
+\index{setAmount@{setAmount}!LoanCalculator@{LoanCalculator}}
+\doxysubsubsection{\texorpdfstring{setAmount()}{setAmount()}}
+{\footnotesize\ttfamily void Loan\+Calculator\+::set\+Amount (\begin{DoxyParamCaption}\item[{long double}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Total loan amount A Total loan amount A Implements input validation\+: Must be non-\/negative. \Hypertarget{classLoanCalculator_a2f498031e002c3c3cbd5d20c621404db}\label{classLoanCalculator_a2f498031e002c3c3cbd5d20c621404db} 
+\index{LoanCalculator@{LoanCalculator}!setInitialPayment@{setInitialPayment}}
+\index{setInitialPayment@{setInitialPayment}!LoanCalculator@{LoanCalculator}}
+\doxysubsubsection{\texorpdfstring{setInitialPayment()}{setInitialPayment()}}
+{\footnotesize\ttfamily void Loan\+Calculator\+::set\+Initial\+Payment (\begin{DoxyParamCaption}\item[{float}]{initialA }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initial down payment \Hypertarget{classLoanCalculator_ac106a9e5d2cca15cb0e5605f060a9558}\label{classLoanCalculator_ac106a9e5d2cca15cb0e5605f060a9558} 
+\index{LoanCalculator@{LoanCalculator}!setInterest@{setInterest}}
+\index{setInterest@{setInterest}!LoanCalculator@{LoanCalculator}}
+\doxysubsubsection{\texorpdfstring{setInterest()}{setInterest()}}
+{\footnotesize\ttfamily void Loan\+Calculator\+::set\+Interest (\begin{DoxyParamCaption}\item[{long double}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Yearly interest rate i as in 6.\+75 Internally .0675/12 will be used If 6.\+75 is passed to \doxylink{classLoanCalculator_ac106a9e5d2cca15cb0e5605f060a9558}{set\+Interest()} get\+Interest() will return 6.\+75 get\+Periodic\+Interest() will return .0675/12.\+0 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Loan.\+h\item 
+src/Loan.\+cpp\end{DoxyCompactItemize}
