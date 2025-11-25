@@ -1,0 +1,17 @@
+# Configuration File for Loan Calculator
+# This file is included to demonstrate the removal of hardcoded values (Task 2).
+
+# DEFAULT_INTEREST_RATE: The default annual interest rate to be used
+# if the -i flag is omitted. (Example: 4.5% Annual Interest)
+DEFAULT_INTEREST_RATE = 4.5
+
+# DEFAULT_OPENING_FEE_PERCENT: The default fee charged for opening the loan.
+# This percentage is applied to the principal loan amount. (Example: 1.0% Fee)
+DEFAULT_OPENING_FEE_PERCENT = 1.0
+
+# DEFAULT_MINIMUM_PERIOD: The minimum number of months for a valid loan.
+DEFAULT_MINIMUM_PERIOD = 12
+
+# DEFAULT_MAXIMUM_PERIOD: The maximum number of months allowed for a loan.
+# This helps prevent accidental integer overflow or extremely long terms.
+DEFAULT_MAXIMUM_PERIOD = 360
