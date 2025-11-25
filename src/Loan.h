@@ -1,5 +1,5 @@
-#ifndef LOANCALCULATOR_H_INCLUDED
-#define LOANCALCULATOR_H_INCLUDED
+#ifndef LOAN_H_INCLUDED
+#define LOAN_H_INCLUDED
 
 /*
 Formulas from: http://oakroadsystems.com/math/loan.htm
@@ -53,7 +53,14 @@ public:
   /**
    * Total loan amount A
    */
-  inline void setAmount(float A) { amount_ = A; amountSet_ = true; }
+  /**
+   * Total loan amount A
+   * Implements input validation: Must be non-negative.
+   */
+  inline void setAmount(long double A) { 
+    if(A < 0) throw std::invalid_argument("Amount can't be negative!"); 
+    amount_ = A; amountSet_ = true; 
+  }
   inline float getAmount() const { return amount_; }
 
   /**
@@ -69,24 +76,36 @@ public:
    *    getInterest() will return 6.75
    *    getPeriodicInterest() will return .0675/12.0
    */
-  void setInterest(float i) { interest_ = i; interestPeriodic_ = i/100.0/12.0; interestSet_ = true; }
-  inline float getInterest() const         { return interest_; }
-  inline float getPeriodicInterest() const { return interestPeriodic_; }
+  inline void setInterest(long double i) { 
+    if(i < 0) throw std::invalid_argument("Interest rate can't be negative!"); 
+    interest_ = i; interestPeriodic_ = i/100.0/12.0; interestSet_ = true; 
+  }
+  inline long double getInterest() const         { return interest_; }
+  inline long double getPeriodicInterest() const { return interestPeriodic_; }
 
-  void setPayment(float P)        { payment_ = P; paymentSet_ = true; }
-  inline float getPayment() const { return payment_; }
+  inline void setPayment(long double P) { 
+    if(P < 0) throw std::invalid_argument("Payment amount can't be negative!");
+    payment_ = P; paymentSet_ = true; 
+  }
+  inline long double getPayment() const { return payment_; }
 
-  void setPeriodTotal(int N)        { periodTotal_ = N; periodTotalSet_ = true; }
+  inline void setPeriodTotal(int N) { 
+    if(N <= 0 || N>1200) throw std::invalid_argument("Total period must be greater than zero!");
+    periodTotal_ = N; periodTotalSet_ = true; 
+  }
   inline int getPeriodTotal() const { return periodTotal_; }
 
-  void setPeriodElapsed(int n)         { periodElapsed_ = n; periodElapsedSet_ = true; }
+  inline void setPeriodElapsed(int n) { 
+    if(n < 0 || n>periodTotal_) throw std::invalid_argument("Elapsed period can't be negative!");
+    periodElapsed_ = n; periodElapsedSet_ = true; 
+  }
   inline int getPeriodElapsed() const  { return periodElapsed_; }
 
   inline void setOpeningFee(float fee) { openingFee_ = fee; }
-  inline float getOpeningFee() const   { return openingFee_; }
+  inline long double getOpeningFee() const   { return openingFee_; }
 
   inline void setOpeningPercent(float percent) { openingPercent_ = percent; }
-  inline float getOpeningPercent() const       { return openingPercent_; }
+  inline long double getOpeningPercent() const       { return openingPercent_; }
 
   inline void reset() {
     amount_ = initialPayment_ = interest_ = interestPeriodic_ = payment_ = openingFee_ = openingPercent_ = 0.0;
@@ -98,27 +117,27 @@ public:
   // The actual calculation methods
   //
 
-  float calculateLoanBalance();
-  float calculatePayment();
-  float calculateNumberPayments();
-  float calculateLoanAmount();
-  float calculateInterestRate();
+  long double calculateLoanBalance();
+  long double calculatePayment();
+  long double calculateNumberPayments();
+  long double calculateLoanAmount();
+  long double calculateInterestRate();
   // The effective interest rate, once fees have been applied
-  float calculateEffectiveInterestRate();
+  long double calculateEffectiveInterestRate();
 
   std::string toString();
 
 private:
-  float amount_;        // loan amount
+  long double amount_;        // loan amount
   bool amountSet_;
 
-  float initialPayment_;     // initial down payment
+  long double initialPayment_;     // initial down payment
 
-  float interest_;          // interest rate, something like 6.75
-  float interestPeriodic_;  // this will be .0675/12
+  long double interest_;          // interest rate, something like 6.75
+  long double interestPeriodic_;  // this will be .0675/12
   bool interestSet_;
 
-  float payment_;       // payment amount
+  long double payment_;       // payment amount
   bool paymentSet_;
 
   int periodTotal_;     // total payment periods
@@ -128,8 +147,8 @@ private:
   bool periodElapsedSet_;
 
   // These two are used if loans charge a fee opening fee or percentage
-  float openingFee_;
-  float openingPercent_;
+  long double openingFee_;
+  long double openingPercent_;
 
 };
 
